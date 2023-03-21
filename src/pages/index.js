@@ -2,11 +2,21 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { useState, useEffect } from "react";
 
-const buffer = new SharedArrayBuffer(8);
 // if this errors then its not supported
 
 export default function Home() {
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    try {
+      const buffer = new SharedArrayBuffer(8);
+    } catch (e) {
+      setError(e);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -17,7 +27,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>its supported</p>
+          <p>{error ? error.message : "its supported"}</p>
         </div>
       </main>
     </>
