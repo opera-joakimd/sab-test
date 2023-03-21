@@ -1,10 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { useState, useEffect } from "react";
-
-// if this errors then its not supported
 
 export default function Home() {
   const [error, setError] = useState();
@@ -15,6 +11,7 @@ export default function Home() {
     } catch (e) {
       setError(e);
     }
+    // try once on render
   }, []);
 
   return (
